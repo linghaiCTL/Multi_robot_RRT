@@ -59,7 +59,7 @@ def is_collision(node, map, rod_length):
             return True
     return False
 
-def check_path_collision(from_node, to_node, map, rod_length, num_checks=50):
+def check_path_collision(from_node, to_node, map, rod_length, num_checks=100):
     # 连杆碰撞检测
     for i in range(1, num_checks + 1):
         alpha = i / num_checks
@@ -75,6 +75,7 @@ def rrt_planner(map, start, goal, rod_length, step_size, max_iter=50000):
     start_node = Node(*start)
     goal_node = Node(*goal)
     nodes = [start_node]
+    find_end = False
 
     for _ in range(max_iter):
         if random.random() < 0.01:
@@ -99,8 +100,11 @@ def rrt_planner(map, start, goal, rod_length, step_size, max_iter=50000):
         if distance(new_node, goal_node) < 5 and not is_collision(goal_node, map, rod_length):
             goal_node.parent = new_node
             nodes.append(goal_node)
+            find_end = True
             break
 
+    if not find_end:
+        return None
     path = []
     node = goal_node
     while node is not None:

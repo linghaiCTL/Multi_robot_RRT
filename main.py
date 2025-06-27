@@ -44,6 +44,8 @@ if __name__ == '__main__':
         # (1).RRT算法规划搬运物体的路径
         RRT_step_size = map_size[0]/100
         path = rrt_planner(map, start, goal, rod_length, RRT_step_size)
+        if path is None:
+            continue
         
         # (2).计算可行的bot路径
         bot1_path, bot2_path = bot.path_planner(map, path, start_pos, z, rod_length)
