@@ -85,7 +85,7 @@ if __name__ == '__main__':
         rodend1.append(np.array([x-dx,y-dy, z]))
         rodend2.append(np.array([x+dx,y+dy, z]))
     #（3）IK计算机械臂参数
-    print('[[Log]] Now performing IK calculate, this may take about 20 seconds')
+    print('[[Log]] Now performing IK calculate, this may take about 20 to 300 seconds')
     np_bot1=[]
     np_bot2=[]
     for (x, y, _) in bot1_path:
