@@ -71,7 +71,7 @@ if __name__ == '__main__':
     for i, (x, y, _) in enumerate(bot2_path):
         plt.plot(x, y, 'b.', label='Bot1' if i == 0 else "")
 
-    plt.title("RRT Path for Rod")
+    # plt.title("RRT Path for Rod")
     plt.legend()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     print(f'[[Log]] RRT is done. The figure showing the planned path can be find at {output_path}')
