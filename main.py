@@ -13,6 +13,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Parse map name and save directory.")
     parser.add_argument('--map_name', type=str, default="large_map", help='Name of the map')
     parser.add_argument('--output_dir', type=str, default=None, help='The directory to save output results')
+    parser.add_argument('--save_format', type=str, default='gif', help='The format to save result video')
     parser.add_argument('--smooth_degree', type=int, default=2, help='The smooth degree of the final result, the higher this param, the smoother the result, the longer the time cost for IK calculating')
     return parser.parse_args()
 
@@ -23,6 +24,10 @@ if __name__ == '__main__':
     map_dir = 'maps'
     map_name = args.map_name
     output_dir = args.output_dir
+    save_format = args.save_format
+    if not save_format in ['gif', 'mp4']:
+        print(f"[[Error]] Unavailable saving format {save_format}, please choose 'gif' or 'mp4'")
+        exit()
     if output_dir is None:
         output_dir = map_name
     map_path = os.path.join(map_dir, map_name + '.json')
@@ -96,7 +101,7 @@ if __name__ == '__main__':
     flag, thetas2 = IK.IK_trace(np_bot2, rodend2, init_theta2)
     
     # 四、结果可视化
-    output_path = os.path.join(output_dir, 'trace.gif')
+    output_path = os.path.join(output_dir, f'trace.{save_format}')
     flag = visualize.visualize(map, bot1_path, bot2_path, thetas1, thetas2, path, z, [start[0],start[1],0], [goal[0], goal[1], 0], output_path, rod_length, map_size)
     if flag:
         print(f'[[Log]] Animation has done, the output video can be find at {output_path}')

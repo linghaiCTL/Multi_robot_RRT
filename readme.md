@@ -59,3 +59,18 @@ python main.py --map_name <MAP_NAME> --save_dir <SAVE_DIR> --smooth_degree <SMOO
 ```bash
 python main.py --map_name large_map
 ```
+
+## 📊 结果示例
+
+下面展示一些运行后的示例输出：
+
+| 原始路径示例 | 运动仿真示例 |
+| ------------ | ------------- |
+| ![Original Path](./results/large_map/path.png) | ![Path Animation](./results/large_map/trace.gif) |
+| ------------ | ------------- |
+| ![Original Path](./results/small_map/path.png) | ![Path Animation](./results/small_map/trace.gif) |
+| ------------ | ------------- |
+
+
+> 📂 *以上示例文件可在 `./results/` 文件夹中找到，实际输出将根据你的参数保存在 `--save_dir` 指定的文件夹中。*
+
